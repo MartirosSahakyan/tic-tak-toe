@@ -1,8 +1,9 @@
+import { TicTakToe } from "./components/TicTakToe/TicTakToe";
 
 function App() {
   return (
     <div >
-      Tic Tac Toe    
+      <TicTakToe />    
     </div>
   );
 }
