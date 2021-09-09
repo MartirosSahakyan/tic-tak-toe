@@ -1,8 +1,7 @@
 .board {
     width: fit-content;
-    border: 1px solid black;
-    margin: 150px auto
+    margin: 150px auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
-.row {
-  display: flex;
-}
+
