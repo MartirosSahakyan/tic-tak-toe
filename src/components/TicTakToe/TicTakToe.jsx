@@ -1,7 +1,14 @@
 import { useState } from "react";
 import styles from "./TicTakToe.module.css";
 import { Square } from "../Square/Square";
-import { changeMatrixElement } from "../helpers/helper";
+import {
+  changeMatrixElement,
+  checkDraw,
+  emptyMatrix,
+} from "../../helpers/helper";
+import { useEffect } from "react";
+import NotificationIsDraw from "../NotificationIsDraw/NotificationIsDraw";
+import CurrentPlayer from "../CurrentPlayer/CurrentPlayer";
 
 export function TicTakToe() {
   const [board, setBoard] = useState([
@@ -10,6 +17,7 @@ export function TicTakToe() {
     [null, null, null],
   ]);
   const [player, setPlayer] = useState("X");
+  const [isDraw, setIsDraw] = useState(false);
 
   const handleSquareClick = (i, player) => {
     switch (i) {
@@ -53,20 +61,33 @@ export function TicTakToe() {
         break;
     }
   };
+  const handleStartAgain = () => {
+    setIsDraw(false);
+    setBoard(emptyMatrix(board));
+  };
+  useEffect(() => {
+    if (checkDraw(board)) setIsDraw(!isDraw);
+  }, [board]);
 
   return (
-    <div className={styles.board}>
-      {board.flat().map((square, index) => {
-        return (
-          <Square
-            key={index}
-            symbol={square}
-            player={player}
-            i={index}
-            onClick={handleSquareClick}
-          />
-        );
-      })}
-    </div>
+    <>
+      {isDraw && <NotificationIsDraw onClick={handleStartAgain} />}
+
+      <CurrentPlayer player={player} />
+
+      <div className={styles.board}>
+        {board.flat().map((square, index) => {
+          return (
+            <Square
+              key={index}
+              symbol={square}
+              player={player}
+              i={index}
+              onClick={handleSquareClick}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
