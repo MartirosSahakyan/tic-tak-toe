@@ -19,57 +19,57 @@ export function TicTakToe() {
     [null, null, null],
   ]);
   const [startWith, setStartWith] = useState("X");
-  const [currPlayer, setCurrPlayer] = useState(startWith);
+  const [nextPlayer, setNextPlayer] = useState(startWith);
   const [isDraw, setIsDraw] = useState(false);
   const [winner, setWinner] = useState("");
   const [history, setHistory] = useState({ X: [], O: [] });
 
-  const handleSquareClick = (i, currPlayer) => {
+  const handleSquareClick = (i, nextPlayer) => {
     switch (i) {
       case 0:
-        setBoard(changeMatrixElement(board, 0, 0, currPlayer));
+        setBoard(changeMatrixElement(board, 0, 0, nextPlayer));
         if (!board[0][0])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 1:
-        setBoard(changeMatrixElement(board, 0, 1, currPlayer));
+        setBoard(changeMatrixElement(board, 0, 1, nextPlayer));
         if (!board[0][1])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 2:
-        setBoard(changeMatrixElement(board, 0, 2, currPlayer));
+        setBoard(changeMatrixElement(board, 0, 2, nextPlayer));
         if (!board[0][2])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 3:
-        setBoard(changeMatrixElement(board, 1, 0, currPlayer));
+        setBoard(changeMatrixElement(board, 1, 0, nextPlayer));
         if (!board[1][0])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 4:
-        setBoard(changeMatrixElement(board, 1, 1, currPlayer));
+        setBoard(changeMatrixElement(board, 1, 1, nextPlayer));
         if (!board[1][1])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 5:
-        setBoard(changeMatrixElement(board, 1, 2, currPlayer));
+        setBoard(changeMatrixElement(board, 1, 2, nextPlayer));
         if (!board[1][2])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 6:
-        setBoard(changeMatrixElement(board, 2, 0, currPlayer));
+        setBoard(changeMatrixElement(board, 2, 0, nextPlayer));
         if (!board[2][0])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 7:
-        setBoard(changeMatrixElement(board, 2, 1, currPlayer));
+        setBoard(changeMatrixElement(board, 2, 1, nextPlayer));
         if (!board[2][1])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       case 8:
-        setBoard(changeMatrixElement(board, 2, 2, currPlayer));
+        setBoard(changeMatrixElement(board, 2, 2, nextPlayer));
         if (!board[2][2])
-          setCurrPlayer((currPlayer = currPlayer === "X" ? "O" : "X"));
+          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
         break;
       default:
         break;
@@ -84,7 +84,7 @@ export function TicTakToe() {
 
   const handleChangePlayer = ({ target: { value } }) => {
     setStartWith(value);
-    setCurrPlayer(value);
+    setNextPlayer(value);
   };
 
   useEffect(() => {
@@ -123,7 +123,7 @@ export function TicTakToe() {
 
       <ChoosePlayer value={startWith} handleChange={handleChangePlayer} />
 
-      <NextPlayer player={currPlayer} />
+      <NextPlayer player={nextPlayer} />
 
       {winner && <NotificationWin winner={winner} onClick={handleStartAgain} />}
 
@@ -133,7 +133,7 @@ export function TicTakToe() {
             <Square
               key={index}
               symbol={square}
-              player={currPlayer}
+              player={nextPlayer}
               i={index}
               onClick={handleSquareClick}
             />
