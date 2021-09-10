@@ -22,6 +22,7 @@ export function TicTakToe() {
   const [currPlayer, setCurrPlayer] = useState(startWith);
   const [isDraw, setIsDraw] = useState(false);
   const [winner, setWinner] = useState("");
+  const [history, setHistory] = useState({ X: [], O: [] });
 
   const handleSquareClick = (i, currPlayer) => {
     switch (i) {
@@ -81,7 +82,7 @@ export function TicTakToe() {
     setWinner("");
   };
 
-  const handleChangePlayer = ({target:{value}}) => {
+  const handleChangePlayer = ({ target: { value } }) => {
     setStartWith(value);
     setCurrPlayer(value);
   };
@@ -91,9 +92,31 @@ export function TicTakToe() {
       setWinner(findWinner(board));
     } else if (checkDraw(board)) {
       setIsDraw(!isDraw);
+      setHistory({
+        ...history,
+        X: [...history.X, 0],
+        O: [...history.O, 0],
+      });
     }
   }, [board]);
 
+  useEffect(() => {
+    if (winner === "X") {
+      setHistory({
+        ...history,
+        X: [...history.X, '-'],
+        O: [...history.O, '-'],
+      });
+    }
+    if (winner === "O") {
+      setHistory({
+        ...history,
+        X: [...history.X, 0],
+        O: [...history.O, 1],
+      });
+    }
+  }, [winner]);
+  
   return (
     <>
       {isDraw && <NotificationIsDraw onClick={handleStartAgain} />}
