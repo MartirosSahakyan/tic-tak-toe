@@ -5,10 +5,12 @@ import {
   changeMatrixElement,
   checkDraw,
   emptyMatrix,
+  findWinner,
 } from "../../helpers/helper";
 import { useEffect } from "react";
 import NotificationIsDraw from "../NotificationIsDraw/NotificationIsDraw";
 import CurrentPlayer from "../CurrentPlayer/CurrentPlayer";
+import NotificationWin from "../NotificationWin/NotificationWin";
 
 export function TicTakToe() {
   const [board, setBoard] = useState([
@@ -18,6 +20,7 @@ export function TicTakToe() {
   ]);
   const [player, setPlayer] = useState("X");
   const [isDraw, setIsDraw] = useState(false);
+  const [winner, setWinner] = useState("");
 
   const handleSquareClick = (i, player) => {
     switch (i) {
@@ -61,12 +64,21 @@ export function TicTakToe() {
         break;
     }
   };
+
   const handleStartAgain = () => {
     setIsDraw(false);
     setBoard(emptyMatrix(board));
+    setWinner("");
   };
+
   useEffect(() => {
-    if (checkDraw(board)) setIsDraw(!isDraw);
+    if (findWinner(board)) {
+      setWinner(findWinner(board));
+
+    }else if (checkDraw(board)) {
+      setIsDraw(!isDraw)
+    }
+    
   }, [board]);
 
   return (
@@ -74,7 +86,9 @@ export function TicTakToe() {
       {isDraw && <NotificationIsDraw onClick={handleStartAgain} />}
 
       <CurrentPlayer player={player} />
-
+     
+      {winner && <NotificationWin winner={winner} onClick={handleStartAgain} />}
+     
       <div className={styles.board}>
         {board.flat().map((square, index) => {
           return (
