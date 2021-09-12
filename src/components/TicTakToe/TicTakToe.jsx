@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./TicTakToe.module.css";
 import {
   changeMatrixElement,
+  changeNextPlayer,
   checkDraw,
   emptyMatrix,
   findWinner,
@@ -28,48 +29,39 @@ export function TicTakToe() {
     switch (i) {
       case 0:
         setBoard(changeMatrixElement(board, 0, 0, nextPlayer));
-        if (!board[0][0])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[0][0]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 1:
         setBoard(changeMatrixElement(board, 0, 1, nextPlayer));
-        if (!board[0][1])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[0][1]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 2:
         setBoard(changeMatrixElement(board, 0, 2, nextPlayer));
-        if (!board[0][2])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[0][2]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 3:
         setBoard(changeMatrixElement(board, 1, 0, nextPlayer));
-        if (!board[1][0])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[1][0]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 4:
         setBoard(changeMatrixElement(board, 1, 1, nextPlayer));
-        if (!board[1][1])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[1][1]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 5:
         setBoard(changeMatrixElement(board, 1, 2, nextPlayer));
-        if (!board[1][2])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[1][2]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 6:
         setBoard(changeMatrixElement(board, 2, 0, nextPlayer));
-        if (!board[2][0])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[2][0]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 7:
         setBoard(changeMatrixElement(board, 2, 1, nextPlayer));
-        if (!board[2][1])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[2][1]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       case 8:
         setBoard(changeMatrixElement(board, 2, 2, nextPlayer));
-        if (!board[2][2])
-          setNextPlayer((nextPlayer = nextPlayer === "X" ? "O" : "X"));
+        if (!board[2][2]) setNextPlayer(changeNextPlayer(nextPlayer));
         break;
       default:
         break;
@@ -104,8 +96,8 @@ export function TicTakToe() {
     if (winner === "X") {
       setHistory({
         ...history,
-        X: [...history.X, '-'],
-        O: [...history.O, '-'],
+        X: [...history.X, "-"],
+        O: [...history.O, "-"],
       });
     }
     if (winner === "O") {
@@ -116,7 +108,7 @@ export function TicTakToe() {
       });
     }
   }, [winner]);
-  
+
   return (
     <>
       {isDraw && <NotificationIsDraw onClick={handleStartAgain} />}

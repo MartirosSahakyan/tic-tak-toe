@@ -29,7 +29,6 @@ export function emptyMatrix(board) {
   });
 }
 
-
 export function findWinner(matrix) {
   let winner = "";
   const diagonal = [];
@@ -70,4 +69,8 @@ export function findWinner(matrix) {
   if (winner) {
     return winner;
   }
+}
+
+export function changeNextPlayer(player){
+  return player = player === "X" ? "O" : "X"
 }
