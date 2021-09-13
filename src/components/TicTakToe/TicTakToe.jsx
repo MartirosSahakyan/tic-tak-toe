@@ -7,10 +7,9 @@ import {
   emptyMatrix,
   findWinner,
 } from "../../helpers/helper";
-import NotificationIsDraw from "../NotificationIsDraw/NotificationIsDraw";
 import Square from "../Square/Square";
 import NextPlayer from "../NextPlayer/NextPlayer";
-import NotificationWin from "../NotificationWin/NotificationWin";
+import AlertDialog from "../AlertDialog/AlertDialog";
 import ChoosePlayer from "../ChoosePlayer/ChoosePlayer";
 
 export function TicTakToe() {
@@ -24,6 +23,8 @@ export function TicTakToe() {
   const [isDraw, setIsDraw] = useState(false);
   const [winner, setWinner] = useState("");
   const [history, setHistory] = useState({ X: [], O: [] });
+
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleSquareClick = (i, nextPlayer) => {
     switch (i) {
@@ -72,6 +73,7 @@ export function TicTakToe() {
     setIsDraw(false);
     setBoard(emptyMatrix(board));
     setWinner("");
+    setDialogOpen(false);
   };
 
   const handleChangePlayer = ({ target: { value } }) => {
@@ -79,15 +81,21 @@ export function TicTakToe() {
     setNextPlayer(value);
   };
 
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   useEffect(() => {
     if (findWinner(board)) {
       setWinner(findWinner(board));
+      setDialogOpen(true);
     } else if (checkDraw(board)) {
       setIsDraw(!isDraw);
+      setDialogOpen(true);
       setHistory({
         ...history,
-        X: [...history.X, 0],
-        O: [...history.O, 0],
+        X: [...history.X, "-"],
+        O: [...history.O, "-"],
       });
     }
   }, [board]);
@@ -96,8 +104,8 @@ export function TicTakToe() {
     if (winner === "X") {
       setHistory({
         ...history,
-        X: [...history.X, "-"],
-        O: [...history.O, "-"],
+        X: [...history.X, 1],
+        O: [...history.O, 0],
       });
     }
     if (winner === "O") {
@@ -111,13 +119,26 @@ export function TicTakToe() {
 
   return (
     <>
-      {isDraw && <NotificationIsDraw onClick={handleStartAgain} />}
+      {isDraw && (
+        <AlertDialog
+          title={"The game is DRAW"}
+          handleClose={handleDialogClose}
+          handleStartAgain={handleStartAgain}
+          open={dialogOpen}
+        />
+      )}
+
+      {winner && (
+        <AlertDialog
+          title={`The Game WIN ${winner}`}
+          handleClose={handleDialogClose}
+          handleStartAgain={handleStartAgain}
+          open={dialogOpen}
+        />
+      )}
 
       <ChoosePlayer value={startWith} handleChange={handleChangePlayer} />
-
       <NextPlayer player={nextPlayer} />
-
-      {winner && <NotificationWin winner={winner} onClick={handleStartAgain} />}
 
       <div className={styles.board}>
         {board.flat().map((square, index) => {
