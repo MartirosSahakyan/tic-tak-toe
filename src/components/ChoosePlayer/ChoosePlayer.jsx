@@ -6,9 +6,6 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
 export default function ChoosePlayer({value, handleChange}) {
-//   const [value, setValue] = React.useState('female');
-
-  
 
   return (
     <FormControl component="fieldset">
