@@ -8,7 +8,6 @@ import {
   findWinner,
 } from "../../helpers/helper";
 import Square from "../Square/Square";
-import NextPlayer from "../NextPlayer/NextPlayer";
 import AlertDialog from "../AlertDialog/AlertDialog";
 import ChoosePlayer from "../ChoosePlayer/ChoosePlayer";
 
@@ -18,12 +17,13 @@ export function TicTakToe() {
     [null, null, null],
     [null, null, null],
   ]);
-  const [startWith, setStartWith] = useState("X");
+  const [startWith, setStartWith] = useState("");
   const [nextPlayer, setNextPlayer] = useState(startWith);
   const [isDraw, setIsDraw] = useState(false);
   const [winner, setWinner] = useState("");
   const [history, setHistory] = useState({ X: [], O: [] });
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [choosePlayerOpen, setChoosePlayerOpen] = useState(true);
 
   const handleSquareClick = (i, nextPlayer) => {
     switch (i) {
@@ -73,11 +73,13 @@ export function TicTakToe() {
     setBoard(emptyMatrix(board));
     setWinner("");
     setDialogOpen(false);
+    setChoosePlayerOpen(true);
   };
 
   const handleChangePlayer = ({ target: { value } }) => {
     setStartWith(value);
     setNextPlayer(value);
+    setChoosePlayerOpen(false);
   };
 
   const handleDialogClose = () => {
@@ -128,7 +130,10 @@ export function TicTakToe() {
         />
       )}
 
-      <ChoosePlayer value={startWith} handleChange={handleChangePlayer} />
+      <ChoosePlayer
+        open={choosePlayerOpen}
+        handleChange={handleChangePlayer}
+      />
 
       <div className={styles.board}>
         {board.flat().map((square, index) => {
