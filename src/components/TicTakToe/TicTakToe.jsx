@@ -74,12 +74,16 @@ export function TicTakToe() {
     setWinner("");
     setDialogOpen(false);
     setChoosePlayerOpen(true);
+    setStartWith("");
   };
 
   const handleChangePlayer = ({ target: { value } }) => {
     setStartWith(value);
     setNextPlayer(value);
-    setChoosePlayerOpen(false);
+  };
+
+  const handleStartGame = () => {
+    if (startWith) setChoosePlayerOpen(false);
   };
 
   const handleDialogClose = () => {
@@ -129,8 +133,14 @@ export function TicTakToe() {
           open={dialogOpen}
         />
       )}
+      <ChoosePlayer
+        value={startWith}
+        open={choosePlayerOpen}
+        handleBtnClick={handleStartGame}
+        handleRadioBtn={handleChangePlayer}
+      />
 
-      <ChoosePlayer open={choosePlayerOpen} handleChange={handleChangePlayer} />
+      <h1 style={{ textAlign: "center" }}>Tic Tac Toe</h1>
 
       <div className={styles.board}>
         {board.flat().map((square, index) => {

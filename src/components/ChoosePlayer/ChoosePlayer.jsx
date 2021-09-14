@@ -5,6 +5,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -19,18 +20,26 @@ const useStyles = makeStyles({
   radioBtn: {
     margin: "10px auto",
   },
+  btn: {
+    marginTop: "30px",
+  },
 });
 
-export default function ChoosePlayer({ handleChange, open }) {
+export default function ChoosePlayer({
+  handleBtnClick,
+  handleRadioBtn,
+  open,
+  value,
+}) {
   const classes = useStyles();
 
   return (
-    <Dialog open={open} onClose={handleChange}>
+    <Dialog open={open} onClose={handleBtnClick}>
       <FormControl className={classes.form} component="fieldset">
         <FormLabel className={classes.title} component="legend">
           Choose Player to start
         </FormLabel>
-        <RadioGroup onChange={handleChange}>
+        <RadioGroup onChange={handleRadioBtn}>
           <FormControlLabel
             className={classes.radioBtn}
             value="X"
@@ -46,6 +55,14 @@ export default function ChoosePlayer({ handleChange, open }) {
             label="O::  "
           />
         </RadioGroup>
+        <Button
+          onClick={handleBtnClick}
+          variant="contained"
+          color="primary"
+          className={classes.btn}
+        >
+          Start Game
+        </Button>
       </FormControl>
     </Dialog>
   );
