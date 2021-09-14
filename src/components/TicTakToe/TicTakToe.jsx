@@ -23,7 +23,6 @@ export function TicTakToe() {
   const [isDraw, setIsDraw] = useState(false);
   const [winner, setWinner] = useState("");
   const [history, setHistory] = useState({ X: [], O: [] });
-
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleSquareClick = (i, nextPlayer) => {
@@ -119,18 +118,10 @@ export function TicTakToe() {
 
   return (
     <>
-      {isDraw && (
+      {(winner || isDraw) && (
         <AlertDialog
-          title={"The game is DRAW"}
-          handleClose={handleDialogClose}
-          handleStartAgain={handleStartAgain}
-          open={dialogOpen}
-        />
-      )}
-
-      {winner && (
-        <AlertDialog
-          title={`The Game WIN ${winner}`}
+          title={winner ? "Win Player " : "The game is DRAW"}
+          winner={winner}
           handleClose={handleDialogClose}
           handleStartAgain={handleStartAgain}
           open={dialogOpen}
