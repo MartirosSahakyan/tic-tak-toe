@@ -1,5 +1,6 @@
-import styles from "./Square.module.css";
 import cn from "classnames";
+
+import styles from "./Square.module.css";
 
 export default function Square({ symbol, i, onClick, player }) {
   return (

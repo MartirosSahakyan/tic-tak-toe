@@ -1,16 +1,18 @@
 .board {
-    width: fit-content;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.container{
-    position: relative;
-    margin-top: 80px;
-}
-.title{
-    text-align: center;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+.container {
+  position: relative;
+  margin-top: 80px;
+  height: 100vh;
+}
+
+.title {
+  text-align: center;
+}

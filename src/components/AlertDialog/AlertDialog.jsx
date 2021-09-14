@@ -33,6 +33,7 @@ export default function AlertDialog({
   handleClose,
 }) {
   const classes = useStyles();
+
   return (
     <div>
       <Dialog className={classes.dialog} open={open} onClose={handleClose}>

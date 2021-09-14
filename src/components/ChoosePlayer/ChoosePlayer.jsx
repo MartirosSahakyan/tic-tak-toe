@@ -25,11 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ChoosePlayer({
-  handleBtnClick,
-  handleRadioBtn,
-  open,
-}) {
+export default function ChoosePlayer({ handleBtnClick, handleRadioBtn, open }) {
   const classes = useStyles();
 
   return (

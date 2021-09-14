@@ -1,5 +1,7 @@
-import styles from "./Scoreboard.module.css";
 import cn from "classnames";
+
+import styles from "./Scoreboard.module.css";
+
 import { sumArray } from "../../helpers/utils";
 
 const Scoreboard = ({ history }) => {

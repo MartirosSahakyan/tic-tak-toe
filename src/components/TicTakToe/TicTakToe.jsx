@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+
 import styles from "./TicTakToe.module.css";
+
 import {
   changeMatrixElement,
   checkDraw,
@@ -7,11 +9,11 @@ import {
   findWinner,
 } from "../../helpers/gameLogic";
 import { changeNextPlayer } from "../../helpers/utils";
+
 import Square from "../Square/Square";
 import AlertDialog from "../AlertDialog/AlertDialog";
 import ChoosePlayer from "../ChoosePlayer/ChoosePlayer";
 import Scoreboard from "../Scoreboard/Scoreboard";
-import classNames from "classnames";
 
 export function TicTakToe() {
   const [board, setBoard] = useState([
@@ -135,6 +137,7 @@ export function TicTakToe() {
           open={dialogOpen}
         />
       )}
+
       <ChoosePlayer
         value={startWith}
         open={choosePlayerOpen}
@@ -146,7 +149,6 @@ export function TicTakToe() {
 
       <div className={styles.container}>
         <Scoreboard history={history} />
-
         <div className={styles.board}>
           {board.flat().map((square, index) => {
             return (
