@@ -1,7 +1,13 @@
 .board {
     width: fit-content;
-    margin: 100px auto;
     display: grid;
     grid-template-columns: auto auto auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.container{
+    position: relative;
+    margin-top: 80px;
 }
 

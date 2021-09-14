@@ -10,6 +10,7 @@ import {
 import Square from "../Square/Square";
 import AlertDialog from "../AlertDialog/AlertDialog";
 import ChoosePlayer from "../ChoosePlayer/ChoosePlayer";
+import Scoreboard from "../Scoreboard/Scoreboard";
 
 export function TicTakToe() {
   const [board, setBoard] = useState([
@@ -135,12 +136,18 @@ export function TicTakToe() {
       )}
       <ChoosePlayer
         value={startWith}
-        open={choosePlayerOpen}
+        // open={choosePlayerOpen}
+        open={false}
         handleBtnClick={handleStartGame}
         handleRadioBtn={handleChangePlayer}
       />
 
       <h1 style={{ textAlign: "center" }}>Tic Tac Toe</h1>
+      
+      <div className={styles.container}>
+
+      
+      <Scoreboard />
 
       <div className={styles.board}>
         {board.flat().map((square, index) => {
@@ -154,6 +161,8 @@ export function TicTakToe() {
             />
           );
         })}
+      </div>
+
       </div>
     </>
   );
