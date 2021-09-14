@@ -70,7 +70,3 @@ export function findWinner(matrix) {
     return winner;
   }
 }
-
-export function changeNextPlayer(player){
-  return player = player === "X" ? "O" : "X"
-}

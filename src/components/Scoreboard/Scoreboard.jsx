@@ -1,7 +1,8 @@
 import styles from "./Scoreboard.module.css";
 import cn from "classnames";
+import { sumArray } from "../../helpers/utils";
 
-const Scoreboard = () => {
+const Scoreboard = ({ history }) => {
   return (
     <div className={styles.board}>
       <header className={styles.header}>
@@ -10,20 +11,21 @@ const Scoreboard = () => {
       </header>
       <main className={styles.main}>
         <div className={cn(styles.column, styles.borderRight)}>
-          <div>1</div>
-          <div>-</div>
-          <div>0</div>
+          {history.X.map((el, i) => {
+            return <div key={i}>{el} </div>;
+          })}
         </div>
         <div className={styles.column}>
-          <div>0</div>
-          <div>-</div>
-          <div>1</div>
+          {history.O.map((el, i) => {
+            return <div key={i}>{el} </div>;
+          })}
         </div>
       </main>
-      {/* <p>total</p> */}
       <footer className={styles.footer}>
-        <div className={cn(styles.title, styles.borderRight)}>X</div>
-        <div className={styles.title}>O</div>
+        <div className={cn(styles.title, styles.borderRight)}>
+          {sumArray(history.X)}
+        </div>
+        <div className={styles.title}>{sumArray(history.O)}</div>
       </footer>
     </div>
   );

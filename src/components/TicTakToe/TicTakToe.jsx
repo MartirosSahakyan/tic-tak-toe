@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import styles from "./TicTakToe.module.css";
 import {
   changeMatrixElement,
-  changeNextPlayer,
   checkDraw,
   emptyMatrix,
   findWinner,
-} from "../../helpers/helper";
+} from "../../helpers/gameLogic";
+import { changeNextPlayer } from "../../helpers/utils";
 import Square from "../Square/Square";
 import AlertDialog from "../AlertDialog/AlertDialog";
 import ChoosePlayer from "../ChoosePlayer/ChoosePlayer";
 import Scoreboard from "../Scoreboard/Scoreboard";
+import classNames from "classnames";
 
 export function TicTakToe() {
   const [board, setBoard] = useState([
@@ -136,33 +137,29 @@ export function TicTakToe() {
       )}
       <ChoosePlayer
         value={startWith}
-        // open={choosePlayerOpen}
-        open={false}
+        open={choosePlayerOpen}
         handleBtnClick={handleStartGame}
         handleRadioBtn={handleChangePlayer}
       />
 
-      <h1 style={{ textAlign: "center" }}>Tic Tac Toe</h1>
-      
+      <h1 className={styles.title}>Tic Tac Toe</h1>
+
       <div className={styles.container}>
+        <Scoreboard history={history} />
 
-      
-      <Scoreboard />
-
-      <div className={styles.board}>
-        {board.flat().map((square, index) => {
-          return (
-            <Square
-              key={index}
-              symbol={square}
-              player={nextPlayer}
-              i={index}
-              onClick={handleSquareClick}
-            />
-          );
-        })}
-      </div>
-
+        <div className={styles.board}>
+          {board.flat().map((square, index) => {
+            return (
+              <Square
+                key={index}
+                symbol={square}
+                player={nextPlayer}
+                i={index}
+                onClick={handleSquareClick}
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );
