@@ -1,6 +1,10 @@
-# Tic Tak Toe   
+# Tic Tak Toe  
+
+*A Simple Tic Tac Toe Game built with React*
 
 [D E M O](https://tic-tak-toe-ten.vercel.app/)   
+### Used Libraries
 
-
-This project was bootstrapped with [Create React App](https://reactjs.org/).
+React JS, Material UI, Classnames,  PropTypes   
+  
+  
