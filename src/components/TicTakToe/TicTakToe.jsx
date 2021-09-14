@@ -122,7 +122,7 @@ export function TicTakToe() {
     <>
       {(winner || isDraw) && (
         <AlertDialog
-          title={winner ? "Win Player " : "The game is DRAW"}
+          title={winner ? "W I N player " : "D R A W"}
           winner={winner}
           handleClose={handleDialogClose}
           handleStartAgain={handleStartAgain}
@@ -130,10 +130,7 @@ export function TicTakToe() {
         />
       )}
 
-      <ChoosePlayer
-        open={choosePlayerOpen}
-        handleChange={handleChangePlayer}
-      />
+      <ChoosePlayer open={choosePlayerOpen} handleChange={handleChangePlayer} />
 
       <div className={styles.board}>
         {board.flat().map((square, index) => {

@@ -30,11 +30,7 @@ export default function AlertDialog({
   const classes = useStyles();
   return (
     <div>
-      <Dialog
-        className={classes.dialog}
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog className={classes.dialog} open={open} onClose={handleClose}>
         <DialogTitle className={classes.title} id="alert-dialog-title">
           {title}
           <span className={classes.span}>{winner}</span>

@@ -25,7 +25,7 @@ export default function ChoosePlayer({ handleChange, open }) {
   const classes = useStyles();
 
   return (
-    <Dialog open={true} onClose={handleChange}>
+    <Dialog open={open} onClose={handleChange}>
       <FormControl className={classes.form} component="fieldset">
         <FormLabel className={classes.title} component="legend">
           Choose Player to start
