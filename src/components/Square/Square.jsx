@@ -5,9 +5,10 @@ export default function Square({ symbol, i, onClick, player }) {
   return (
     <div
       className={cn(
-        [styles.square],
         { [styles.squareX]: player === "X" && !symbol },
-        { [styles.squareO]: player === "O" && !symbol }
+        { [styles.squareO]: player === "O" && !symbol },
+        { [styles.squareFilled]: symbol },
+        { [styles.squareEmpty]: !symbol }
       )}
       onClick={() => onClick(i, player)}
     >

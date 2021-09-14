@@ -129,7 +129,7 @@ export function TicTakToe() {
       )}
 
       <ChoosePlayer value={startWith} handleChange={handleChangePlayer} />
-      <NextPlayer player={nextPlayer} />
+      {/* <NextPlayer player={nextPlayer} /> */}
 
       <div className={styles.board}>
         {board.flat().map((square, index) => {
