@@ -29,7 +29,6 @@ export default function ChoosePlayer({
   handleBtnClick,
   handleRadioBtn,
   open,
-  value,
 }) {
   const classes = useStyles();
 
